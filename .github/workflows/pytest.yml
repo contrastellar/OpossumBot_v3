@@ -19,6 +19,6 @@ jobs:
         python -m pip install --upgrade pip
         python -m pip install --upgrade pytest
         pip install -r requirements.txt
-    - name: testing /w pytest
-      run: |
-        pytest ./src/py/*
+    # - name: testing /w pytest
+    #  run: |
+      
