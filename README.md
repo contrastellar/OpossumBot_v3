@@ -1,37 +1,20 @@
-# OpossumBot (now in v3!) and discord-picturebook (now in Alpha!)
+# OpossumBot (now in v3!)
 
 OpossumBot v3 is a python module and bot core for posting funny Virginia Opossum (Didelphis virginiana) pictures to your [Discord App](https://discord.com) chats. Converted from `node.js` and brought to life using Python 3.11!
 
-discord-picturebook is a python module to be used in conjunction with a properly configured `mysql` database, in order to modularize the capability of making your own discord picture bot, in the same way that the OpossumBot core does!  
-
 # Info
 
-`opossumbot` is a implementation of `discord-picturebook`, which is a implementation of `discord.py` and basic `mysql` queries, to post pictures of Opossums to discord chats!
+`opossumbot` is a implementation of `discord.py` and basic `postgresql` queries, to post pictures of Opossums to discord chats!
 
 # Runtime 
 
-OpossumBot (will be) running aboard `hemisphere.contrastellar.com`, a personal server of [@contrastellar](https://github.com/contrastellar), and has no plans for future expansion as of January 2024.
+OpossumBot (will be) running aboard a [DigitalOcean](https://www.digitalocean.com/) droplet.
 
-## hemisphere.contrastellar.com
-
-`hemisphere.contrastellar.com` is a [DigitalOcean](https://www.digitalocean.com/) droplet, with 4GB of Memory, 2 AMD vCPUs, and an 80 GB disk. It is currently privately managed by [@contrastellar](https://github.com/contrastellar) as a webhost for personal websites, and a remote Ubuntu compilation platform. The platform will likely be cleaned in the future.
-
-# Installation 
+# Installation & Testing
 
 ## OpossumBot v3
 ```
 TO BE IMPLEMENTED! PLEASE COME BACK LATER!
-```
-
-## discord-picturebook
-```
-TO BE IMPLEMENTED ON RELEASE! PLEASE COME BACK LATER!
-```
-
-# `discord-picturebook` usage
-
-```py
-import discord-picturebook
 ```
 
 # Quickstart (/w conda)
