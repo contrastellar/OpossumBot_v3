@@ -45,8 +45,8 @@ conda activate OpossumBot
 5. `conda` handles all the installation of the packages and dependencies for these modules. A `requirements.txt` is maintained for both `virtualenv` users, and for GitHub Actions runtime simplicity.
 
 # TODO
-- [ ] Create sample Database and publish `.sql` files for user creation
-  * update `README.md` with `discord-picturebook` installation and usage
+- [ ] ~~Create sample Database and publish `.sql` files for user creation~~
+  * ~~update `README.md` with `discord-picturebook` installation and usage~~
 - [ ] Create bot core for OpossumBot for alpha testing
 - [ ] Edit existing workflow `.github/workflows/lint.yaml` to properly lint all `.py` files
 - [ ] Create new workflows for testing, building, publishing, etc.
@@ -59,5 +59,5 @@ Pull requests are welcome. For major changes, please open issues first to discus
 
 # License
 
-The license for `opossumbot` and `discord-picturebook` is the `GNU General Public License`. Please see [License](https://github.com/contrastellar/OpossumBot_v3/blob/main/LICENSE) for more information.
+The license for `opossumbot` is the `GNU General Public License`. Please see [License](https://github.com/contrastellar/OpossumBot_v3/blob/main/LICENSE) for more information.
 
