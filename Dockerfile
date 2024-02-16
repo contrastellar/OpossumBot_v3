@@ -37,6 +37,8 @@ COPY . .
 # into this layer.
 ARG BOTNAME="OpossumBot"
 RUN conda env create -f environment.yml -n ${BOTNAME}
+RUN activate ${BOTNAME}
+RUN pip install -r requirements.txt
 
 # Switch to the non-privileged user to run the application.
 USER appuser
@@ -45,4 +47,5 @@ USER appuser
 EXPOSE 8000
 
 # Run the application.
-CMD conda env list
+CMD activate ${BOTNAME} \
+&& python3 src/py/OpossumBot.py
