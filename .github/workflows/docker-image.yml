@@ -13,5 +13,4 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Build the Docker image
-        run: ps
-      # run: docker build . --file Dockerfile --tag opossumbot:$(date +%s)
+        run: docker build . --file Dockerfile --tag opossumbot:$(date +%s)
