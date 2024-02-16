@@ -8,7 +8,7 @@ on:
 jobs:
 
   # We test before we end up adding the relevant token files & db.ini files
-  test:
+  test_and_push:
 
     runs-on: ubuntu-latest
 
@@ -17,10 +17,6 @@ jobs:
       - name: Build the Docker image (verify no issues)
         run: docker build . --file Dockerfile --tag opossumbot:$(date +%s)
 
-  push_to_prod:
-    name: Push to host
-    runs-on: ubuntu-latest
-    steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
 
@@ -36,6 +32,6 @@ jobs:
         run: rsync -avz $GITHUB_WORKSPACE ${{ secrets.HOST_USER }}@${{secrets.SSH_HOST }}:/home/opossumbot_run/runner/
 
       - name: Build on host machine
-        run: ssh ${{ secrets.HOST_USER}}@${{ secrets.SSH_HOST }} cd runner && docker build . --tag opossumbot:$(date +%s)
+        run: ssh ${{ secrets.HOST_USER}}@${{ secrets.SSH_HOST }} cd runner/OpossumBot_v3 && docker build . --tag opossumbot:$(date +%s)
 
       # more to be added later
