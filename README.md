@@ -1,4 +1,6 @@
 # OpossumBot (now in v3!)
+[![Build Docker Image (Verify no issues)](https://github.com/contrastellar/OpossumBot_v3/actions/workflows/docker-image.yml/badge.svg?branch=main)](https://github.com/contrastellar/OpossumBot_v3/actions/workflows/docker-image.yml) [![pytest](https://github.com/contrastellar/OpossumBot_v3/actions/workflows/pytest.yml/badge.svg?branch=main)](https://github.com/contrastellar/OpossumBot_v3/actions/workflows/pytest.yml)
+
 
 OpossumBot v3 is a python module and bot core for posting funny Virginia Opossum (Didelphis virginiana) pictures to your [Discord App](https://discord.com) chats. Converted from `node.js` and brought to life using Python 3.11!
 
