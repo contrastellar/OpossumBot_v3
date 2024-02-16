@@ -17,21 +17,28 @@ jobs:
       - name: Build the Docker image (verify no issues)
         run: docker build . --file Dockerfile --tag opossumbot:$(date +%s)
 
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v3
-
       - uses: shimataro/ssh-key-action@v2
         with:
           key: ${{ secrets.HOST_PRIVATEKEY }}
           known_hosts: 'placeholder'
-          
+
+    # Need to add the functionality of the database.ini and run.token
+      - name: add database.ini
+        run: |
+          cd $GITHUB_WORKSPACE/
+          touch database.ini
+          echo ${{ secrets.DATABASE_INI }} >> database.ini
+      
+      - name: add run.token
+        run: |
+          touch run.token
+          echo ${{ secrets.DISCORD_TOKEN }} >> run.token
+
       - name: Adding known hosts
         run: ssh-keyscan -H ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
         
       - name: Deploy with rsync
         run: rsync -avz $GITHUB_WORKSPACE ${{ secrets.HOST_USER }}@${{secrets.SSH_HOST }}:/home/opossumbot_run/runner/
 
-      - name: Build on host machine
-        run: ssh ${{ secrets.HOST_USER}}@${{ secrets.SSH_HOST }} cd runner/OpossumBot_v3 && docker build . --tag opossumbot:$(date +%s)
-
-      # more to be added later
+      #- name: Build on host machine
+      #  run: ssh ${{ secrets.HOST_USER}}@${{ secrets.SSH_HOST }} cd runner/OpossumBot_v3 && docker build . --tag opossumbot:$(date +%s)
