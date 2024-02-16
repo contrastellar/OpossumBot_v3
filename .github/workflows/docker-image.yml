@@ -36,6 +36,6 @@ jobs:
         run: rsync -avz $GITHUB_WORKSPACE ${{ secrets.HOST_USER }}@${{secrets.SSH_HOST }}:/home/opossumbot_run/runner/
 
       - name: Build on host machine
-        run: ssh ${{ secrets.HOST_USER}}@${{ secrets.SSH_HOST }} docker build ./runner/ --tag opossumbot:$(date +%s)
+        run: ssh ${{ secrets.HOST_USER}}@${{ secrets.SSH_HOST }} cd runner && docker build ./runner/ --tag opossumbot:$(date +%s)
 
       # more to be added later
