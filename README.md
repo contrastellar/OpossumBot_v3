@@ -34,9 +34,11 @@ TO BE IMPLEMENTED! PLEASE COME BACK LATER!
 cd ./OpossumBot_v3
 ```
 
-3. Install the environment /w conda
+3. Install the environment /w conda & pip
 ```sh
 conda env create --file environment.yml
+# Run this pip command to assure that all requirements are actually installed
+pip install -r requirements.txt
 ```
 
 4. Activate the environment
