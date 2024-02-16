@@ -1,4 +1,4 @@
-name: Build Docker Image (Verify no issues)
+name: Build and Publish Docker Image
 
 on:
   pull_request:
@@ -6,11 +6,46 @@ on:
 
 jobs:
 
-  build:
+  # We test before we end up adding the relevant token files & db.ini files
+  test:
 
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
-      - name: Build the Docker image
+      - uses: actions/checkout@v4
+      - name: Build the Docker image (verify no issues)
         run: docker build . --file Dockerfile --tag opossumbot:$(date +%s)
+
+  push_to_registery:
+    name: Push to hub.docker.com
+    runs-on: ubuntu-latest
+    steps:
+
+    # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+    - name: Check out repo
+      uses: actions/checkout@v4
+
+    - name: Log in to Docker Hub
+      uses: docker/login-action@v3.0.0
+      with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+    - name: Extract metadata for Docker
+      id: meta
+      uses: docker/metadata-action@v5.5.1
+      with:
+        images: contrastellar/opossumbot
+    
+    # Create the database.ini and run.token files
+    
+
+    # This must go last, as 
+    - name: Build and push Docker Image
+      uses: docker/build-push-action@v5.1.0
+      with:
+        context: .
+        file: ./Dockerfile
+        push: true
+        tags: ${{ steps.meta.outputs.tags }}
+        labels: ${{ steps.meta.outputs.labels }}
