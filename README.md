@@ -53,6 +53,7 @@ conda activate OpossumBot
   * ~~update `README.md` with `discord-picturebook` installation and usage~~
 - [ ] Create bot core for OpossumBot for alpha testing
 - [ ] Edit existing workflow `.github/workflows/lint.yaml` to properly lint all `.py` files
+- [ ] Create OpossumBot action to push to hub.docker.io on release
 - [ ] Create new workflows for testing, building, publishing, etc.
 - [ ] ???
 - [ ] Profit

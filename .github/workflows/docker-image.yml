@@ -38,7 +38,7 @@ jobs:
         run: ssh-keyscan -H ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
         
       - name: Deploy with rsync
-        run: rsync -avz $GITHUB_WORKSPACE ${{ secrets.HOST_USER }}@${{secrets.SSH_HOST }}:/home/opossumbot_run/runner/
+        run: rsync -avz $GITHUB_WORKSPACE ${{ secrets.HOST_USER }}@${{ secrets.SSH_HOST }}:/home/opossumbot_run/runner/
 
       - name: Build on host machine
-        run: ssh ${{ secrets.HOST_USER}}@${{ secrets.SSH_HOST }} cd runner/OpossumBot_v3 && docker build . --tag opossumbot:$(date +%s)
+        run: ssh ${{ secrets.HOST_USER }}@${{ secrets.SSH_HOST }} cd runner/OpossumBot_v3 && docker build . --tag opossumbot:$(date +%s)
