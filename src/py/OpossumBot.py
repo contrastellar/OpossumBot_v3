@@ -17,7 +17,8 @@ async def on_message(message):
     if message.author == client.user:
         return
 
-    if message.content.startswith('$hello'):
+    if message.content.startswith('!possum'):
+        # TODO need to update this so that it returns an opossum picture
         await OpossumBotFunctions.ping(client, message)
 
 TOKEN = open('test.token').read()
