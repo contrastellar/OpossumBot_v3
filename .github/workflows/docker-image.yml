@@ -3,8 +3,8 @@ name: Build and Publish Docker Image
 on:
   pull_request:
     branches: [ "main" ]
-  push:
-    branches: [ "dev-actions" ]
+
+
 jobs:
 
   # We test before we end up adding the relevant token files & db.ini files
@@ -40,5 +40,5 @@ jobs:
       - name: Deploy with rsync
         run: rsync -avz $GITHUB_WORKSPACE ${{ secrets.HOST_USER }}@${{secrets.SSH_HOST }}:/home/opossumbot_run/runner/
 
-      #- name: Build on host machine
-      #  run: ssh ${{ secrets.HOST_USER}}@${{ secrets.SSH_HOST }} cd runner/OpossumBot_v3 && docker build . --tag opossumbot:$(date +%s)
+      - name: Build on host machine
+        run: ssh ${{ secrets.HOST_USER}}@${{ secrets.SSH_HOST }} cd runner/OpossumBot_v3 && docker build . --tag opossumbot:$(date +%s)
