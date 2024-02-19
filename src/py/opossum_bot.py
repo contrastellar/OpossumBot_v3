@@ -1,5 +1,10 @@
+# pylint: disable=R1732
+# pylint: disable=W0718
+# pylint: disable=I1101
+# pylint: disable=R1710
 """
-
+OpossumBot core
+This module is used as the __main__ script of the OpossumBot functionality
 """
 
 import discord
@@ -8,7 +13,7 @@ from config import load_config
 from opossum_bot_functions import opossum_bot_functions
 
 
-def connect(config):
+def connect_config(config):
     """ Connect to the PostgreSQL database server """
     try:
         # connecting to the PostgreSQL server
@@ -17,6 +22,10 @@ def connect(config):
             return conn
     except (psycopg2.DatabaseError, Exception) as error:
         print(error)
+
+if __name__ == '__main__':
+    config = load_config()
+    connect_config(config)
 
 
 intents = discord.Intents.default()
@@ -38,15 +47,9 @@ async def on_message(message):
     """
     if message.author == client.user:
         return
-
     if message.content.startswith('!possum'):
-        
         # TODO need to change the call here so that it sends an opossum
         await opossum_bot_functions.ping(client, message)
 
 TOKEN = open('run.token', encoding="utf-8").read()
 client.run(TOKEN)
-
-if __name__ == '__main__':
-    config = load_config()
-    connect(config)
