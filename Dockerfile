@@ -29,6 +29,16 @@ RUN adduser \
 
 
 # Copy the source code into the container.
+# IMPORTANT --
+# This will copy _all_ files not defined in ./.dockerignore
+# Meaning that files like *.token files or *.ini files will be copied
+# We get around this by having those files be imported _prior_ to the build step
+# when running from the GH/A runner.
+#
+# For testing locally, you ***MUST*** supply your own files of:
+# `database.ini` & `run.token`
+# Otherwise the bot ***will not run*** and will throw an exception
+# As of -- `585f484`
 COPY . .
 
 # Download dependencies as a separate step to take advantage of Docker's caching.
