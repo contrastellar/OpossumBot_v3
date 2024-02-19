@@ -3,6 +3,7 @@
 TODO
 db.info
 database.ini
+build.fish
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
