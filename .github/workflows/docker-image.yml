@@ -49,4 +49,4 @@ jobs:
       
       # Needs to be updated with future releases
       - name: Run new image
-        run: ssh ${{ secrets.HOST_USER }}@${{ secrets.SSH_HOST }} fish -c "docker start (docker create contrastellar/opossumbot:v3.alpha)"
+        run: ssh ${{ secrets.HOST_USER }}@${{ secrets.SSH_HOST }} "docker start (docker create contrastellar/opossumbot:v3.alpha)"
