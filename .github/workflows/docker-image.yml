@@ -41,7 +41,7 @@ jobs:
         run: rsync -avz $GITHUB_WORKSPACE ${{ secrets.HOST_USER }}@${{ secrets.SSH_HOST }}:/home/opossumbot_run/runner/
         
       - name: Remove old alpha image from host
-        run: ssh ${{ secrets.HOST_USER }}@${{ secrets.SSH_HOST }} docker rmi contratsellar/opossumbot:v3.alpha
+        run: ssh ${{ secrets.HOST_USER }}@${{ secrets.SSH_HOST }} docker rmi contrastellar/opossumbot:v3.alpha
 
       # Needs to be updated on future builds
       - name: Build on host machine
