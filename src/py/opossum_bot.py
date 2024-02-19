@@ -44,8 +44,8 @@ async def on_message(message):
         # TODO need to change the call here so that it sends an opossum
         await opossum_bot_functions.ping(client, message)
 
-with open('run.token', encoding="utf-8").read() as TOKEN:
-    client.run(TOKEN)
+TOKEN = open('run.token', encoding="utf-8").read()
+client.run(TOKEN)
 
 if __name__ == '__main__':
     config = load_config()

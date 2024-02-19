@@ -48,4 +48,4 @@ EXPOSE 8000
 
 # Run the application.
 CMD activate ${BOTNAME} \
-&& python3 src/py/OpossumBot.py
+&& python3 src/py/opossum_bot.py
