@@ -39,6 +39,14 @@ jobs:
         
       - name: Deploy with rsync
         run: rsync -avz $GITHUB_WORKSPACE ${{ secrets.HOST_USER }}@${{ secrets.SSH_HOST }}:/home/opossumbot_run/runner/
+        
+      - name: Remove old alpha image from host
+        run: ssh ${{ secrets.HOST_USER }}@${{ secrets.SSH_HOST }} docker rmi contratsellar/opossumbot:v3.alpha
 
+      # Needs to be updated on future builds
       - name: Build on host machine
-        run: ssh ${{ secrets.HOST_USER }}@${{ secrets.SSH_HOST }} cd runner/OpossumBot_v3 && docker build . --tag contrastellar/opossumbot:$(date +%s)
+        run: ssh ${{ secrets.HOST_USER }}@${{ secrets.SSH_HOST }} cd runner/OpossumBot_v3 && docker build . --tag contrastellar/opossumbot:v3.alpha
+      
+      # Needs to be updated with future releases
+      - name: Run new image
+        run: ssh ${{ secrets.HOST_USER }}@${{ secrets.SSH_HOST }} docker start $(docker create contrastellar/opossumbot:v3.alpha)
