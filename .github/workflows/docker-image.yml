@@ -45,8 +45,8 @@ jobs:
 
       # Needs to be updated on future builds
       - name: Build on host machine
-        run: ssh ${{ secrets.HOST_USER }}@${{ secrets.SSH_HOST }} cd runner/OpossumBot_v3 && docker build . --tag contrastellar/opossumbot:v3.alpha
+        run: ssh ${{ secrets.HOST_USER }}@${{ secrets.SSH_HOST }} "cd runner/OpossumBot_v3 && docker build . --tag contrastellar/opossumbot:v3.alpha"
       
       # Needs to be updated with future releases
       - name: Run new image
-        run: ssh ${{ secrets.HOST_USER }}@${{ secrets.SSH_HOST }} fish -c "docker start (docker create opossumbot:test)"
+        run: ssh ${{ secrets.HOST_USER }}@${{ secrets.SSH_HOST }} fish -c "docker start (docker create opossumbot:v3.alpha)"
