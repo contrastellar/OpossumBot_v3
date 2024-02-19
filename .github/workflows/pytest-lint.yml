@@ -1,0 +1,48 @@
+# linting and testing script run
+# this should only run on PRs to main
+
+name: pytest-lint
+
+on:
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.11.7"]
+    steps:
+    - uses: actions/checkout@v3
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v3
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        python -m pip install --upgrade pylint
+        pip install -r requirements.txt
+    - name: linting /w pylint
+      run: |
+        pylint --rcfile ./pylintrc.toml ./src/py/opossum_bot.py
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.11.7"]
+    steps:
+    - uses: actions/checkout@v3
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v3
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        python -m pip install --upgrade pytest
+        pip install -r requirements.txt
+    # - name: testing /w pytest
+    #  run: |
+      
