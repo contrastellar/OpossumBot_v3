@@ -24,21 +24,10 @@ jobs:
         python -m pip install --upgrade pip
         python -m pip install --upgrade pylint
         pip install -r requirements.txt
-    - name: linting /w pylint
+    - name: linting bot core /w pylint
       run: |
         pylint --rcfile ./pylintrc.toml ./src/py/opossum_bot.py
-  test:
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        python-version: ["3.11.7"]
-    steps:
-    - uses: actions/checkout@v3
-    - name: Set up Python ${{ matrix.python-version }}
-      uses: actions/setup-python@v3
-      with:
-        python-version: ${{ matrix.python-version }}
-    - name: Install dependencies
+    - name: linting functions /w pylint
       run: |
         pylint --rcfile ./pylintrc.toml ./src/py/opossum_bot_functions/opossum_bot_functions.py
   # test:
