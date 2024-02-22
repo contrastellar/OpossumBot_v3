@@ -48,3 +48,15 @@ async def add_opossum(conn: psycopg2.connect, client: discord.Client, message: a
     # It's important that the bot is aware of who it is that is sending the image
     # So that must be handled in the bot, rather than in this function.
     return
+
+
+async def return_admins(conn: psycopg2.connect, client: discord.Client, message: any) -> None:
+    """
+    Function that returns the list of admins from the bot
+    """
+    
+    cur = conn.cursor()
+    cur.execute("SELECT * FROM admins")
+    admins = cur.fetchall()
+
+    return admins
