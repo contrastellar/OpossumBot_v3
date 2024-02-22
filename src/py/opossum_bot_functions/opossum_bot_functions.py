@@ -27,3 +27,6 @@ async def return_opossum(conn: psycopg2.connect, client: discord.Client, message
     #image = discord.File(cur.fetchall())
     #message.channel.send(image)
     return
+async def add_opossum(conn: psycopg2.connect, client: discord.Client, message: any) -> None:
+
+    return
