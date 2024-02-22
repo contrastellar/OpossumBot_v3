@@ -12,3 +12,10 @@ async def ping(client: discord.Client, message: any):
     """
     await message.channel.send('This is a test message!')
     return
+
+def return_opossum(client: discord.Client, message: any, ID: int) -> Image:
+    """
+    Function that returns the specified opossum from the
+    database
+    """
+    return
