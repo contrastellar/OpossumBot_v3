@@ -13,7 +13,7 @@ async def ping(client: discord.Client, message: any):
     await message.channel.send('This is a test message!')
     return
 
-async def return_opossum(conn: psycopg2.connect, client: discord.Client, message: any, ID: int) -> Image:
+async def return_opossum(conn: psycopg2.connect, client: discord.Client, message: any, id: int) -> Image:
     """
     Function that returns the specified opossum from the
     database
@@ -22,7 +22,7 @@ async def return_opossum(conn: psycopg2.connect, client: discord.Client, message
     # a working psycopg2 connection.
     cur = conn.cursor()
     # Dummy execution
-    cur.execute("SELECT img FROM opossumbot WHERE ID="+str(ID))
+    cur.execute("SELECT img FROM opossumbot WHERE ID="+str(id))
     print(cur.fetchall())
     #image = discord.File(cur.fetchall())
     #message.channel.send(image)

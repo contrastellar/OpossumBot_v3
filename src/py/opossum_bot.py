@@ -8,7 +8,6 @@ This module is used as the __main__ script of the OpossumBot functionality
 """
 
 import discord
-import datetime
 import psycopg2
 from config import load_config
 from opossum_bot_functions import opossum_bot_functions
