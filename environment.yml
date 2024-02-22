@@ -5,7 +5,9 @@ channels:
 dependencies:
   - bzip2=1.0.8
   - ca-certificates=2023.12.12
+  - colorama=0.4.6
   - krb5=1.20.1
+  - lazy-object-proxy=1.6.0
   - libcxx=16.0.6
   - libedit=3.1.20230828
   - libexpat=2.5.0
@@ -13,6 +15,7 @@ dependencies:
   - libpq=12.17
   - libsqlite=3.44.2
   - libzlib=1.2.13
+  - mccabe=0.7.0
   - ncurses=6.4
   - openssl=3.1.4
   - pip=23.3.2
@@ -24,6 +27,7 @@ dependencies:
   - tk=8.6.13
   - tzdata=2023d
   - wheel=0.42.0
+  - wrapt=1.14.1
   - xz=5.2.6
   - pip:
       - aiohttp==3.9.2
@@ -44,12 +48,12 @@ dependencies:
       - jaraco-classes==3.3.1
       - keyring==24.3.0
       - markdown-it-py==3.0.0
-      - mccabe==0.7.0
       - mdurl==0.1.2
       - more-itertools==10.2.0
       - multidict==6.0.4
       - nh3==0.2.15
       - packaging==23.2
+      - pillow==10.2.0
       - pkginfo==1.9.6
       - platformdirs==4.1.0
       - pluggy==1.4.0
