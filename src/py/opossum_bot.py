@@ -8,6 +8,7 @@ This module is used as the __main__ script of the OpossumBot functionality
 """
 
 import discord
+import datetime
 import psycopg2
 from config import load_config
 from opossum_bot_functions import opossum_bot_functions
@@ -23,12 +24,14 @@ def connect_config(config):
     except (psycopg2.DatabaseError, Exception) as error:
         print(error)
 
+DATABASE_CONN = None
+
 # We want to connect to/verify the connection to the DB
 # BEFORE we do anything else, because w/o the DB
 # we'll run into errors later
 if __name__ == '__main__':
     config = load_config()
-    connect_config(config)
+    DATABASE_CONN = connect_config(config)
 
 
 intents = discord.Intents.default()
@@ -41,6 +44,7 @@ async def on_ready():
     """
     Print to stdout what user is being connected to (useful for debugging)
     """
+    await client.change_presence(activity=discord.Game(name="Alpha Build! Pls no touch!"))
     print(f'We have logged in as {client.user}')
 
 @client.event
@@ -50,9 +54,9 @@ async def on_message(message):
     """
     if message.author == client.user:
         return
-    if message.content.startswith('!possum'):
-        # TODO need to change the call here so that it sends an opossum
-        await opossum_bot_functions.ping(client, message)
+    if message.content.startswith('!possum'):        
+        await opossum_bot_functions.return_opossum(DATABASE_CONN, client, message, 0)
 
+# This needs to be the bottom of the file
 TOKEN = open('run.token', encoding="utf-8").read()
 client.run(TOKEN)
