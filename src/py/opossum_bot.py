@@ -23,6 +23,9 @@ def connect_config(config):
     except (psycopg2.DatabaseError, Exception) as error:
         print(error)
 
+# We want to connect to/verify the connection to the DB
+# BEFORE we do anything else, because w/o the DB
+# we'll run into errors later
 if __name__ == '__main__':
     config = load_config()
     connect_config(config)
