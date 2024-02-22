@@ -2,6 +2,7 @@
 # pylint: disable=W0718
 # pylint: disable=I1101
 # pylint: disable=R1710
+# pylint: disable=W0621
 """
 OpossumBot core
 This module is used as the __main__ script of the OpossumBot functionality
@@ -53,7 +54,7 @@ async def on_message(message):
     """
     if message.author == client.user:
         return
-    if message.content.startswith('!possum'):        
+    if message.content.startswith('!possum'):
         await opossum_bot_functions.return_opossum(DATABASE_CONN, client, message, 0)
 
 # This needs to be the bottom of the file
