@@ -6,6 +6,7 @@ dependencies:
   - bzip2=1.0.8
   - ca-certificates=2023.12.12
   - krb5=1.20.1
+  - libcxx=16.0.6
   - libedit=3.1.20230828
   - libexpat=2.5.0
   - libffi=3.4.2
@@ -13,10 +14,11 @@ dependencies:
   - libsqlite=3.44.2
   - libzlib=1.2.13
   - ncurses=6.4
-  - openssl=3.2.0
+  - openssl=3.1.4
   - pip=23.3.2
   - psycopg2=2.9.9
-  - python=3.11.7
+  - psycopg2-binary=2.9.9
+  - python=3.11.6
   - readline=8.2
   - setuptools=69.0.3
   - tk=8.6.13
@@ -64,4 +66,3 @@ dependencies:
       - urllib3==1.26.18
       - yarl==1.9.4
       - zipp==3.17.0
-prefix: /Users/contrastellar/miniconda3/envs/OpossumBot
