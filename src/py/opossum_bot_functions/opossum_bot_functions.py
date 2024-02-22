@@ -1,8 +1,9 @@
 """
 The functions module of OpossumBot, all the backend handling of 
 """
-import psycopg2
 import discord
+import psycopg2
+from PIL import Image
 
 async def ping(client: discord.Client, message: any):
     """
