@@ -16,8 +16,8 @@ jobs:
       matrix:
         python-version: ["3.11"]
     steps:
-    - uses: actions/checkout@v4
-    - name: Set up Python ${{ matrix.python-version }}
+    - uses: actions/checkout@v3
+    - name: Set up conda /w python version ${{ matrix.python-version }}
       uses: conda-incubator/setup-miniconda@v3.0.2
       with:
         auto-update-conda: true
@@ -28,6 +28,7 @@ jobs:
         conda env create -f ./environment.yml -n test-env
         conda init
         conda activate test-env
+        pip install -r requirements.txt
     - name: linting bot core /w pylint
       run: |
         pylint --rcfile ./pylintrc.toml ./src/py/opossum_bot.py
@@ -54,3 +55,4 @@ jobs:
   #     run: |
   #       pytest src/py/opossum_bot.py
   #       pytest src/py/opossum_bot_functions/opossum_bot_functions.py
+  
