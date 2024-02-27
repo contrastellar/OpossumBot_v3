@@ -1,6 +1,7 @@
 """
 The functions module of OpossumBot, all the backend handling of 
 """
+import io
 import discord
 import psycopg2
 from PIL import Image
@@ -13,7 +14,7 @@ async def ping(client: discord.Client, message: any):
     await message.channel.send('This is a test message!')
     return
 
-async def return_opossum(conn: psycopg2.connect, client: discord.Client, message: any, id: int) -> Image:
+async def return_opossum(conn: psycopg2.connect, client: discord.Client, message: any, id: int) -> discord.File:
     """
     Function that returns the specified opossum from the
     database
@@ -23,10 +24,13 @@ async def return_opossum(conn: psycopg2.connect, client: discord.Client, message
     cur = conn.cursor()
     # Dummy execution
     cur.execute("SELECT img FROM opossumbot WHERE ID="+str(id))
-    print(cur.fetchall())
-    #image = discord.File(cur.fetchall())
-    #message.channel.send(image)
-    return
+    # Pull the raw memory bytes from the result set
+    memory_item = cur.fetchall().pop(0)[0]
+    # Convert the memory item to bytes
+    image_bytes = memory_item.tobytes()
+    # Convert the bytes to an image
+    image = discord.File(io.BytesIO(image_bytes), filename='opossum.png')
+    return image
 
 async def add_opossum(conn: psycopg2.connect, client: discord.Client, message: any, image: bytes) -> None:
     """
