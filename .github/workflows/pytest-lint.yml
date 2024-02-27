@@ -31,9 +31,11 @@ jobs:
         pip install -r requirements.txt
     - name: linting bot core /w pylint
       run: |
+        conda activate test-env
         pylint --rcfile ./pylintrc.toml ./src/py/opossum_bot.py
     - name: linting functions /w pylint
       run: |
+        conda activate test-env
         pylint --rcfile ./pylintrc.toml ./src/py/opossum_bot_functions/opossum_bot_functions.py
   # test:
   #   runs-on: ubuntu-latest
