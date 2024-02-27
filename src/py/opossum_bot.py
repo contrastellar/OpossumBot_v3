@@ -46,6 +46,7 @@ async def on_ready():
     """
     await client.change_presence(activity=discord.Game(name="Alpha Build! Pls no touch!"))
     print(f'We have logged in as {client.user}')
+    return
 
 @client.event
 async def on_message(message):
