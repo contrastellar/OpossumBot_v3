@@ -33,17 +33,9 @@ async def add_opossum(conn: psycopg2.connect, client: discord.Client, message: a
     Function that adds a new opossum to the database
     The image is handled in this function.
     """
-    # Things that need to be done to add a new opossum
     cur = conn.cursor()
 
-    # image needs to be sent as a discord.File object, will make things easier in return_opossum
-    discord_file = discord.File(image)
-
-    # Because the image has already been made into a discord.File object,
-    # we can insert the bytes into the database.
-    cur.execute("INSERT INTO opossumbot (img) VALUES (%s)", (discord_file.fp.read()))
-
-    conn.commit()
+    cur.execute("INSERT INTO opossumbot VALUES (0, %s)", (image,))
 
     # It's important that the bot is aware of who it is that is sending the image
     # So that must be handled in the bot, rather than in this function.
