@@ -16,7 +16,7 @@ jobs:
       matrix:
         python-version: ["3.11"]
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4.1.1
     - name: Set up conda /w python version ${{ matrix.python-version }}
       uses: conda-incubator/setup-miniconda@v3.0.2
       with:
