@@ -54,6 +54,11 @@ async def on_message(message):
     """
     if message.author == client.user:
         return
+    
+    if message.content.startswith('!ping'):
+        await opossum_bot_functions.ping(client, message)
+        return
+    
     if message.content.startswith('!possum'):
         await opossum_bot_functions.return_opossum(DATABASE_CONN, client, message, 0)
 
