@@ -61,7 +61,20 @@ async def on_message(message):
         return
     
     if message.content.startswith('!possum'):
-        await opossum_bot_functions.return_opossum(DATABASE_CONN, client, message, 0)
+        file = await opossum_bot_functions.return_opossum(DATABASE_CONN, client, message, 0)
+        await message.reply(file=file)
+        return
+    
+    if message.content.startswith('!add_possum'):
+        image = await message.attachments[0].read()
+        await opossum_bot_functions.add_opossum(DATABASE_CONN, client, message, image)
+        return
+    
+    if message.content.startswith('!admins'):
+        message_content = await opossum_bot_functions.return_admins(DATABASE_CONN, client, message)
+        await message.channel.send(message_content)
+        return
+    
 
 # This needs to be the bottom of the file
 TOKEN = open('run.token', encoding="utf-8").read()
