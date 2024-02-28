@@ -28,7 +28,7 @@ jobs:
         run: |
           cd $GITHUB_WORKSPACE/
           touch database.ini
-          echo ${{ secrets.DATABASE_INI }} >> database.ini
+          echo "${{ secrets.DATABASE_INI }}" >> database.ini
       
       - name: add run.token
         run: |
