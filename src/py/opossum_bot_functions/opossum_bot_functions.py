@@ -14,6 +14,21 @@ async def ping(client: discord.Client, message: any):
     await message.channel.send('This is a test message!')
     return
 
+async def number_opossums(conn: psycopg2.connect, client: discord.Client, message) -> int:
+    """
+    Function that returns the number of opossums in the database
+    """
+    # At invokation for this funtion, the `conn` parameter is
+    # a working psycopg2 connection.
+    cur = conn.cursor()
+
+    cur.execute("SELECT COUNT(*) FROM opossumbot")
+    conn.commit()
+    memory_item = cur.fetchall().pop(0)[0]
+    # Convert the memory item to an integer
+    number_of_opossums = int(memory_item)
+    return number_of_opossums
+
 async def return_opossum(conn: psycopg2.connect, client: discord.Client, message: any, id: int) -> discord.File:
     """
     Function that returns the specified opossum from the
