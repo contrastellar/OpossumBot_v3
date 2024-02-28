@@ -13,9 +13,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
-      - name: Build the Docker image (verify no issues)
-        run: docker build . --file Dockerfile --tag opossumbot:$(date +%s)
+      # Diabled this step due to redundancy
+      # - uses: actions/checkout@v4
+      # - name: Build the Docker image (verify no issues)
+      #   run: docker build . --file Dockerfile --tag opossumbot:$(date +%s)
 
       - uses: shimataro/ssh-key-action@v2
         with:
