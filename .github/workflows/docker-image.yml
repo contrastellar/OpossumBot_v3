@@ -44,7 +44,7 @@ jobs:
         # TODO define this as an environment variable, to make removing it easier
       - name: Remove old alpha image from host
         run: |
-          ssh ${{ secrets.HOST_USER }}@${{ secrets.SSH_HOST }} docker rm $(docker stop $(docker ps -a -q))
+          ssh ${{ secrets.HOST_USER }}@${{ secrets.SSH_HOST }} docker ps -a -q | docker stop | docker rm
           ssh ${{ secrets.HOST_USER }}@${{ secrets.SSH_HOST }} docker rmi contrastellar/opossumbot:v3.alpha
 
 
