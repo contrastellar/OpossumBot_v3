@@ -13,9 +13,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
-      - name: Build the Docker image (verify no issues)
-        run: docker build . --file Dockerfile --tag opossumbot:$(date +%s)
+      # Diabled this step due to redundancy
+      # - uses: actions/checkout@v4
+      # - name: Build the Docker image (verify no issues)
+      #   run: docker build . --file Dockerfile --tag opossumbot:$(date +%s)
 
       - uses: shimataro/ssh-key-action@v2
         with:
@@ -27,7 +28,7 @@ jobs:
         run: |
           cd $GITHUB_WORKSPACE/
           touch database.ini
-          echo ${{ secrets.DATABASE_INI }} >> database.ini
+          echo "${{ secrets.DATABASE_INI }}" >> database.ini
       
       - name: add run.token
         run: |
@@ -40,8 +41,12 @@ jobs:
       - name: Deploy with rsync
         run: rsync -avz $GITHUB_WORKSPACE ${{ secrets.HOST_USER }}@${{ secrets.SSH_HOST }}:/home/opossumbot_run/runner/
         
+        # TODO define this as an environment variable, to make removing it easier
       - name: Remove old alpha image from host
-        run: ssh ${{ secrets.HOST_USER }}@${{ secrets.SSH_HOST }} docker rmi contrastellar/opossumbot:v3.alpha
+        run: |
+          ssh ${{ secrets.HOST_USER }}@${{ secrets.SSH_HOST }} docker rm (docker stop (docker ps -a -q))
+          ssh ${{ secrets.HOST_USER }}@${{ secrets.SSH_HOST }} docker rmi contrastellar/opossumbot:v3.alpha
+
 
       # Needs to be updated on future builds
       - name: Build on host machine
