@@ -39,6 +39,7 @@ async def return_opossum(conn: psycopg2.connect, client: discord.Client, message
     cur = conn.cursor()
     # Dummy execution
     cur.execute("SELECT img FROM opossumbot WHERE ID="+str(id))
+    conn.commit()
     # Pull the raw memory bytes from the result set
     memory_item = cur.fetchall().pop(0)[0]
     # Convert the memory item to bytes
@@ -54,7 +55,8 @@ async def add_opossum(conn: psycopg2.connect, client: discord.Client, message: a
     """
     cur = conn.cursor()
 
-    cur.execute("INSERT INTO opossumbot VALUES (0, %s)", (image,))
+    cur.execute("INSERT INTO opossumbot(img) VALUES (%s)", (image,))
+    conn.commit()
 
     # It's important that the bot is aware of who it is that is sending the image
     # So that must be handled in the bot, rather than in this function.
@@ -69,5 +71,6 @@ async def return_admins(conn: psycopg2.connect, client: discord.Client, message:
     cur = conn.cursor()
     cur.execute("SELECT * FROM admins")
     admins = cur.fetchall()
+    print(admins)
 
     return admins
