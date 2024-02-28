@@ -65,10 +65,10 @@ async def on_message(message):
         await message.reply(file=file)
         return
     
-    if message.content.startswith('!add_possum'):
-        image = await message.attachments[0].read()
-        await opossum_bot_functions.add_opossum(DATABASE_CONN, client, message, image)
-        return
+    #if message.content.startswith('!add_possum'):
+    #    image = await message.attachments[0].read()
+    #    await opossum_bot_functions.add_opossum(DATABASE_CONN, client, message, image)
+    #    return
     
     if message.content.startswith('!admins'):
         message_content = await opossum_bot_functions.return_admins(DATABASE_CONN, client, message)
