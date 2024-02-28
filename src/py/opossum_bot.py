@@ -69,11 +69,11 @@ async def on_message(message):
         print(f'Sent a opossum to {message.author.name} in {message.guild.name}')
         return
     
-    if message.content.startswith('!add_possum'):
-        if True:
-            image = await message.attachments[0].read()
-            await opossum_bot_functions.add_opossum(DATABASE_CONN, client, message, image)
-        return
+    # if message.content.startswith('!add_possum'):
+    #     if True:
+    #         image = await message.attachments[0].read()
+    #         await opossum_bot_functions.add_opossum(DATABASE_CONN, client, message, image)
+    #     return
     
     if message.content.startswith('!admins'):
         message_content = await opossum_bot_functions.return_admins(DATABASE_CONN, client, message)
