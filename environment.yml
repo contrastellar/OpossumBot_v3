@@ -6,7 +6,7 @@ dependencies:
   - bzip2=1.0.8
   - ca-certificates=2023.12.12
   - krb5=1.20.1
-  - libcxx=16.0.6
+  - libcxx
   - libedit=3.1.20230828
   - libexpat=2.5.0
   - libffi=3.4.2
