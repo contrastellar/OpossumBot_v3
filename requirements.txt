@@ -21,6 +21,7 @@ more-itertools==10.2.0
 multidict==6.0.4
 nh3==0.2.15
 packaging==23.2
+pillow==10.2.0
 pkginfo==1.9.6
 platformdirs==4.1.0
 pluggy==1.4.0
