@@ -58,11 +58,13 @@ async def on_message(message):
     
     if message.content.startswith('!ping'):
         await opossum_bot_functions.ping(client, message)
+        print(f'Sent a ping to {message.author.name}')
         return
     
     if message.content.startswith('!possum'):
         file = await opossum_bot_functions.return_opossum(DATABASE_CONN, client, message, 0)
         await message.reply(file=file)
+        print(f'Sent a opossum to {message.author.name} in {message.guild.name}')
         return
     
     #if message.content.startswith('!add_possum'):
