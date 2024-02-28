@@ -46,7 +46,7 @@ jobs:
         # Remove old alpha image from host
       - name: Remove old alpha image from host
         run: |
-          ssh ${{ secrets.HOST_USER }}@${{ secrets.SSH_HOST }} "fish docker rm (docker stop (docker ps -a -q))"
+          ssh ${{ secrets.HOST_USER }}@${{ secrets.SSH_HOST }} "docker rm (docker stop (docker ps -a -q))"
           ssh ${{ secrets.HOST_USER }}@${{ secrets.SSH_HOST }} "docker rmi contrastellar/opossumbot:v3.alpha"
 
 
