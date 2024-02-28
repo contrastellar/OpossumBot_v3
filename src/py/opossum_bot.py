@@ -12,6 +12,7 @@ import discord
 import psycopg2
 from config import load_config
 from opossum_bot_functions import opossum_bot_functions
+from random import randint
 
 
 def connect_config(config):
@@ -58,22 +59,29 @@ async def on_message(message):
     
     if message.content.startswith('!ping'):
         await opossum_bot_functions.ping(client, message)
+        print(f'Sent a ping to {message.author.name}')
         return
     
     if message.content.startswith('!possum'):
-        file = await opossum_bot_functions.return_opossum(DATABASE_CONN, client, message, 0)
+        number = await opossum_bot_functions.number_opossums(DATABASE_CONN, client, message)
+        file = await opossum_bot_functions.return_opossum(DATABASE_CONN, client, message, randint(1, number))
         await message.reply(file=file)
+        print(f'Sent a opossum to {message.author.name} in {message.guild.name}')
         return
     
-    #if message.content.startswith('!add_possum'):
-    #    image = await message.attachments[0].read()
-    #    await opossum_bot_functions.add_opossum(DATABASE_CONN, client, message, image)
-    #    return
+    # if message.content.startswith('!add_possum'):
+    #     if True:
+    #         image = await message.attachments[0].read()
+    #         await opossum_bot_functions.add_opossum(DATABASE_CONN, client, message, image)
+    #     return
     
     if message.content.startswith('!admins'):
         message_content = await opossum_bot_functions.return_admins(DATABASE_CONN, client, message)
         await message.channel.send(message_content)
         return
+    
+    #if message.content.startswith('!add_admin') & message.author.id == 181187505448681472:
+    #    await opossum_bot_functions.add_admins(DATABASE_CONN, client, message)
     
 
 # This needs to be the bottom of the file
