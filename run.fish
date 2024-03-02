@@ -3,4 +3,4 @@ if status is-interactive
 end
 
 conda activate OpossumBot
-python3 src/py/OpossumBot.py
+python3 src/py/opossum_bot.py

@@ -37,15 +37,14 @@ if __name__ == '__main__':
 
 intents = discord.Intents.default()
 intents.message_content = True
-
 client = discord.Client(intents=intents)
 
 @client.event
 async def on_ready():
     """
-    Print to stdout what user is being connected to (useful for debugging)
+    Print to stdout what user is being connected to, for logging purposes
     """
-    await client.change_presence(activity=discord.Game(name="Alpha Build! Pls no touch!"))
+    # await client.change_presence(activity=discord.Game(name="Alpha Build! Pls no touch!"))
     print(f'We have logged in as {client.user}')
     return
 
@@ -69,20 +68,41 @@ async def on_message(message):
         print(f'Sent a opossum to {message.author.name} in {message.guild.name}')
         return
     
-    # if message.content.startswith('!add_possum'):
-    #     if True:
-    #         image = await message.attachments[0].read()
-    #         await opossum_bot_functions.add_opossum(DATABASE_CONN, client, message, image)
-    #     return
+    if message.content.startswith('!add_possum'):
+        admins = await opossum_bot_functions.return_admins(DATABASE_CONN, client, message)
+        if admins.__contains__(message.author.id):
+            image = await message.attachments[0].read()
+            await opossum_bot_functions.add_opossum(DATABASE_CONN, client, message, image)
+            number = await opossum_bot_functions.number_opossums(DATABASE_CONN, client, message)
+            await message.channel.send(f'{message.author.name} has added a new opossum to the database! :) \n the image is ' + str(number))
+        else:
+            await message.channel.send('You are not an admin! AAAAAAA!')
+        return
     
     if message.content.startswith('!admins'):
         message_content = await opossum_bot_functions.return_admins(DATABASE_CONN, client, message)
         await message.channel.send(message_content)
         return
     
-    #if message.content.startswith('!add_admin') & message.author.id == 181187505448681472:
-    #    await opossum_bot_functions.add_admins(DATABASE_CONN, client, message)
+    if message.content.startswith('!add_admin'):
+        if message.author.id == 181187505448681472:
+            await opossum_bot_functions.add_admins(DATABASE_CONN, client, message)
+            await message.channel.send(f'{message.author.name} has added a new admin to the database! :)')
+        else:
+            await message.channel.send('You are not an admin! AAAAAAA!')
+            print("!add_admin command ignored")
+        return
     
+    if message.content.startswith('!number_opossums'):
+        admins = await opossum_bot_functions.return_admins(DATABASE_CONN, client, message)
+        if admins.__contains__(message.author.id):
+            number = await opossum_bot_functions.number_opossums(DATABASE_CONN, client, message)
+            await message.channel.send(f'Number of opossums in the database is {number}')
+            return
+        else:
+            await message.channel.send('You are not an admin! AAAAAAA!')
+            print("!number_opossums command ignored")
+            return
 
 # This needs to be the bottom of the file
 TOKEN = open('run.token', encoding="utf-8").read()

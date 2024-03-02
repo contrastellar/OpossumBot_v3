@@ -63,14 +63,22 @@ async def add_opossum(conn: psycopg2.connect, client: discord.Client, message: a
     return
 
 
-async def return_admins(conn: psycopg2.connect, client: discord.Client, message: any) -> None:
+async def return_admins(conn: psycopg2.connect, client: discord.Client, message: any) -> list:
     """
     Function that returns the list of admins from the bot
     """
     
     cur = conn.cursor()
     cur.execute("SELECT * FROM admins")
-    admins = cur.fetchall()
-    print(admins)
+    admins = cur.fetchall().pop(0)
 
     return admins
+
+async def add_admins(conn: psycopg2.connect, client: discord.Client, message: any) -> None:
+    """
+    Function that adds a new admin to the database
+    """
+    cur = conn.cursor()
+    cur.execute("INSERT INTO admins(user_id) VALUES (%s)", (message.content,))
+    conn.commit()
+    return None
