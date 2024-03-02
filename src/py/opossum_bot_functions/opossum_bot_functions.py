@@ -71,7 +71,6 @@ async def return_admins(conn: psycopg2.connect, client: discord.Client, message:
     cur = conn.cursor()
     cur.execute("SELECT * FROM admins")
     admins = cur.fetchall().pop(0)
-    print(admins)
 
     return admins
 
