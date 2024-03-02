@@ -37,15 +37,14 @@ if __name__ == '__main__':
 
 intents = discord.Intents.default()
 intents.message_content = True
-
 client = discord.Client(intents=intents)
 
 @client.event
 async def on_ready():
     """
-    Print to stdout what user is being connected to (useful for debugging)
+    Print to stdout what user is being connected to, for logging purposes
     """
-    await client.change_presence(activity=discord.Game(name="Alpha Build! Pls no touch!"))
+    # await client.change_presence(activity=discord.Game(name="Alpha Build! Pls no touch!"))
     print(f'We have logged in as {client.user}')
     return
 
