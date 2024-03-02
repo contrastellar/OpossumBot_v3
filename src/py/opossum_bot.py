@@ -87,6 +87,7 @@ async def on_message(message):
     if message.content.startswith('!add_admin') & message.author.id == 181187505448681472:
         await opossum_bot_functions.add_admins(DATABASE_CONN, client, message)
         await message.channel.send(f'{message.author.name} has added a new admin to the database! :)')
+        return
     
 
 # This needs to be the bottom of the file
