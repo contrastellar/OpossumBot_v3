@@ -103,6 +103,9 @@ async def on_message(message):
             await message.channel.send('You are not an admin! AAAAAAA!')
             print("!number_opossums command ignored")
             return
+        
+    if message_content.startswith('!wheel'):
+        await message.channel.send('https://cdn.discordapp.com/attachments/915671205938364477/1213542487239565332/video0_13.mp4')
 
 # This needs to be the bottom of the file
 TOKEN = open('run.token', encoding="utf-8").read()
