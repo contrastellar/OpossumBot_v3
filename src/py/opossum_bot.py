@@ -104,7 +104,7 @@ async def on_message(message):
             print("!number_opossums command ignored")
             return
         
-    if message_content.startswith('!wheel'):
+    if message.content.startswith('!wheel'):
         await message.channel.send('https://cdn.discordapp.com/attachments/915671205938364477/1213542487239565332/video0_13.mp4')
 
 # This needs to be the bottom of the file
